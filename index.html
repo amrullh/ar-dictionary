@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Kamus 3D — EN/ID</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ── Loading Screen ──────────────────────────────────── -->
+<div id="loading">
+  <div class="loading-inner">
+    <div class="load-title">3D <span>Dictionary</span></div>
+    <div class="load-sub">Memuat huruf A–Z...</div>
+
+    <div id="loading-letters">
+      <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span>
+      <span>F</span><span>G</span><span>H</span><span>I</span><span>J</span>
+      <span>K</span><span>L</span><span>M</span><span>N</span><span>O</span>
+      <span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span>
+      <span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span>
+      <span>Z</span>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="progress-label">0%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── App Shell ───────────────────────────────────────── -->
+<div id="app">
+
+  <!-- MOBILE: top bar -->
+  <header id="topbar">
+    <div class="topbar-title">3D <span>Dictionary</span></div>
+    <div class="topbar-badge">EN / ID</div>
+  </header>
+
+  <!-- Canvas area -->
+  <main id="main">
+    <div id="canvas-container"></div>
+
+    <div id="hint" class="hidden">
+      <p id="hint-text">← Pilih kata dari daftar</p>
+    </div>
+
+    <div id="info-panel">
+      <div class="word-en" id="panel-word-en"></div>
+      <div class="word-id" id="panel-word-id"></div>
+      <div class="divider"></div>
+      <div class="definition" id="panel-definition"></div>
+    </div>
+  </main>
+
+  <!-- Sidebar / bottom sheet -->
+  <aside id="sidebar">
+    <div id="sidebar-header">
+      <div class="label">Kamus Interaktif</div>
+      <h1>3D <span>Dictionary</span></h1>
+      <div id="badge">EN / ID</div>
+    </div>
+    <div id="word-list"></div>
+  </aside>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/loaders/FontLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/geometries/TextGeometry.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
+<script src="data/words.js"></script>
+<script src="js/Scene3D.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
