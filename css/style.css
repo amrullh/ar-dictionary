@@ -444,3 +444,199 @@ html, body {
   #hint-text::before { content: "↓ "; }
   #hint p { font-size: 10px; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   AR MODE
+═══════════════════════════════════════════════════════════ */
+
+/* Video background — hidden by default */
+#ar-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* When AR is active */
+#app.ar-mode #ar-video {
+  opacity: 1;
+}
+
+/* Canvas must be on top and transparent in AR mode */
+#app.ar-mode #canvas-container canvas {
+  background: transparent !important;
+}
+
+/* In AR mode — sidebar becomes semi-transparent */
+#app.ar-mode #sidebar {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+#app.ar-mode #sidebar-header {
+  border-color: rgba(255,255,255,0.15);
+}
+
+#app.ar-mode #sidebar .label,
+#app.ar-mode #sidebar h1,
+#app.ar-mode #sidebar #badge {
+  color: #fff;
+}
+
+#app.ar-mode #sidebar h1 span { color: #7dd3fc; }
+
+#app.ar-mode .word-item .en   { color: #fff; }
+#app.ar-mode .word-item .num,
+#app.ar-mode .word-item .id   { color: rgba(255,255,255,0.5); }
+
+#app.ar-mode .word-item:hover  { background: rgba(255,255,255,0.1); }
+#app.ar-mode .word-item.active {
+  background: rgba(255,255,255,0.15);
+  border-left-color: #7dd3fc;
+}
+
+/* Info panel in AR mode */
+#app.ar-mode #info-panel {
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 60%, transparent);
+}
+
+#app.ar-mode #info-panel .word-id  { color: #fff; }
+#app.ar-mode #info-panel .word-en  { color: #7dd3fc; }
+#app.ar-mode #info-panel .definition { color: rgba(255,255,255,0.6); }
+
+/* Mobile bottom bar in AR mode */
+@media (max-width: 640px) {
+  #app.ar-mode #sidebar {
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  #app.ar-mode #topbar {
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  #app.ar-mode .topbar-title,
+  #app.ar-mode .topbar-badge { color: #fff; }
+}
+
+/* ── AR Buttons ─────────────────────────────────────────── */
+.btn-ar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-ar:hover { background: var(--bg); }
+
+.btn-ar.active {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #fff;
+}
+
+.btn-flip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 99px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-flip:hover { background: rgba(255,255,255,0.25); }
+.btn-flip.hidden { display: none; }
+
+/* Desktop AR button inside sidebar */
+.btn-ar-desktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 14px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-ar-desktop:hover { background: rgba(37,99,235,0.08); }
+
+/* Topbar controls row */
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── LIVE badge ─────────────────────────────────────────── */
+#ar-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #ef4444;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 99px;
+  pointer-events: none;
+}
+
+#ar-badge.hidden { display: none; }
+#app.ar-mode #ar-badge { display: block; }
+
+/* ── Toast error ────────────────────────────────────────── */
+#ar-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  max-width: 320px;
+  text-align: center;
+  z-index: 300;
+  line-height: 1.5;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+#ar-toast.hidden { display: none; }
